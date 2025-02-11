@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'providers/user_provider.dart';
 import 'container/main_container.dart';
 
+import '../utils/resources/strings.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -22,12 +24,12 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: Strings.appTitle,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const MainContainer(title: 'Flutter Demo Home Page'),
+        home: const MainContainer(title: Strings.appBarTitle),
       ),
     );
   }

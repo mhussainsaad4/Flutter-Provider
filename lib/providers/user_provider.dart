@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../utils/resources/strings.dart';
+
 class UserProvider extends ChangeNotifier {
   UserProvider();
 
-  String _userName = 'ProviderValue';
+  String _userName = Strings.initialValue;
 
   String get userName {
     return _userName;
@@ -12,6 +14,5 @@ class UserProvider extends ChangeNotifier {
   void updateUserName({required String userName}) async {
     _userName = userName;
     notifyListeners();
-
   }
 }

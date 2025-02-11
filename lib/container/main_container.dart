@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider_app/home/home_screen.dart';
-import 'package:flutter_provider_app/settings/settings_screen.dart';
+import 'package:flutter_provider_app/utils/resources/styles.dart';
+
+import '../home/home_screen.dart';
+import '../settings/settings_screen.dart';
+import '../utils/widgets/text_widget.dart';
+import '../utils/resources/strings.dart';
 
 class MainContainer extends StatefulWidget {
   const MainContainer({super.key, required this.title});
@@ -15,8 +19,8 @@ class _MainContainerState extends State<MainContainer> {
   int currentIndex = 0;
 
   List<Widget> widgetList = const [
-    Text('Home', style: TextStyle(fontSize: 40)),
-    Text('Settings', style: TextStyle(fontSize: 40)),
+    CText(Strings.home, style: TextStyles.textHeadingStyle),
+    CText(Strings.settings, style: TextStyles.textHeadingStyle),
   ];
 
   List<Widget> screensList = [
@@ -53,12 +57,12 @@ class _MainContainerState extends State<MainContainer> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: Strings.home,
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              label: 'Settings',
+              label: Strings.settings,
               backgroundColor: Colors.green),
         ],
       ),

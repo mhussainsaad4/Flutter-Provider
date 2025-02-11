@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider_app/providers/user_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/user_provider.dart';
+import '../utils/resources/strings.dart';
+import '../utils/resources/styles.dart';
+import '../utils/widgets/text_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,23 +13,21 @@ class HomeScreen extends StatelessWidget {
   Widget buildWithContext(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: const CText(Strings.homePage),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Home Page', style: TextStyle(fontSize: 16)),
-            Text('Home', style: TextStyle(fontSize: 40)),
-            Text(
-              '(${context.watch<UserProvider>().userName}), text From UserProvider',
+            const CText(Strings.homePage, style: TextStyles.textStyle),
+            const CText(Strings.home, style: TextStyles.textHeadingStyle),
+            CText(
+              '(${context.watch<UserProvider>().userName}), ${Strings.textFromUserProvider}',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30,
-              ),
+              style: TextStyles.textSubHeadingStyle,
             ),
-            Text(
-                'UserName value from Provider with read(): ${context.read<UserProvider>().userName}'),
+            CText(
+                '${Strings.textFromRead} ${context.read<UserProvider>().userName}'),
           ],
         ),
       ),
@@ -36,31 +38,28 @@ class HomeScreen extends StatelessWidget {
 //todo  Widget  upon value change which is using Provider while context.watch updates entire widget tree  https://stackoverflow.com/a/79192948
 // todo    we cant use context.read() for provider value (its a anti pattern), we have to use context.watch or Consumer or Selector
 
-
   //todo Recommended Approach
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: const CText(Strings.homePage),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Home Page', style: TextStyle(fontSize: 16)),
-            Text('Home', style: TextStyle(fontSize: 40)),
+            const CText(Strings.homePage, style: TextStyles.textStyle),
+            const CText(Strings.home, style: TextStyles.textHeadingStyle),
             Consumer<UserProvider>(
               builder: (context, value, child) {
-                return Text(
-                  '(${value.userName}), text From UserProvider',
+                return CText(
+                  '(${value.userName}), ${Strings.textFromUserProvider}',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                  ),
+                  style: TextStyles.textSubHeadingStyle,
                 );
               },
-              child: Text('Home Page', style: TextStyle(fontSize: 16)),
+              child: const CText(Strings.homePage, style: TextStyles.textStyle),
             ),
           ],
         ),
